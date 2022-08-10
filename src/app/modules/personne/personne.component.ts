@@ -24,6 +24,14 @@ export class PersonneComponent implements OnInit, OnChanges {
 
   personnage?: Personnage; // = new Personnage(this.nom, 0);
 
+  changeNom(event: any) {
+    if (this.personnage) this.personnage.nom = event.target.value;
+  }
+
+  changeAge(event: any) {
+    if (this.personnage) this.personnage.age = event.target.value;
+  }
+
   constructor() {}
   ngOnChanges(changes: SimpleChanges): void {
     for (const key in changes) {

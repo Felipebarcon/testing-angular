@@ -14,8 +14,19 @@
 
 <br />
 nom:
-<input name="nom" id="nom" type="text" [ngModel]="nom" />
-age: <input name="age" id="age" type="number" [ngModel]="age" /><br />
+<input
+  name="nom"
+  id="nom"
+  (change)="changeNom($event)"
+  [ngModel]="personnage?.nom"
+/>
+age:
+<input
+  name="age"
+  id="age"
+  (change)="changeAge($event)"
+  [ngModel]="personnage?.age"
+/><br />
 
 <!-- Test condition -->
 <ng-container
