@@ -17,14 +17,14 @@ nom:
 <input
   name="nom"
   id="nom"
-  (change)="changeNom($event)"
+  (input)="change($event)"
   [ngModel]="personnage?.nom"
 />
 age:
 <input
   name="age"
   id="age"
-  (change)="changeAge($event)"
+  (input)="change($event)"
   [ngModel]="personnage?.age"
 /><br />
 
