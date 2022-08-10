@@ -40,12 +40,20 @@ export class PersonneComponent implements OnInit, OnChanges {
   sig_msg: string = '';
   verifSignature(event: any) {
     this.sig_msg = '';
+    this.red = '';
     const sig = event.target.value;
     if (event.key == ' ') {
       event.preventDefault();
       this.sig_msg = 'Caractère non autorisé';
+      this.red = 'rouge';
     }
   }
+
+  cancel(event: any) {
+    event.preventDefault();
+  }
+
+  red: string = '';
 
   constructor() {}
   ngOnChanges(changes: SimpleChanges): void {

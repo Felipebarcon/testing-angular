@@ -29,9 +29,13 @@ age:
 /><br />
 
 signature :
-<input name="signature" id="signature" (keydown)="verifSignature($event)" />{{
-  sig_msg
-}}<br />
+<input
+  name="signature"
+  id="signature"
+  (keydown)="verifSignature($event)"
+  (paste)="cancel($event)"
+/><span [ngClass]="red" *ngIf="sig_msg.length > 0">{{ sig_msg }}</span
+><br />
 
 <!-- Test condition -->
 <ng-container
