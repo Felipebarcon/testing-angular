@@ -28,6 +28,11 @@ age:
   [ngModel]="personnage?.age"
 /><br />
 
+signature :
+<input name="signature" id="signature" (keydown)="verifSignature($event)" />{{
+  sig_msg
+}}<br />
+
 <!-- Test condition -->
 <ng-container
   *ngIf="personnage; then personnageOK; else personnageKO"
