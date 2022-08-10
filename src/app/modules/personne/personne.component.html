@@ -1,0 +1,33 @@
+<!-- <p *ngIf="personnage">
+  Hello {{ personnage.nom }}, you are {{ personnage.age }} years old.
+</p>
+<p *ngIf="!personnage">Personne doit avoir un nom et un age</p> -->
+
+<!-- <ng-container *ngIf="personnage"
+  >Hello {{ personnage.nom }}, you are {{ personnage.age }} years
+  old.</ng-container
+>
+
+<ng-container *ngIf="!personnage"
+  >Personne doit avoir un nom et un age</ng-container
+> -->
+
+<br />
+nom:
+<input name="nom" id="nom" type="text" [ngModel]="nom" />
+age: <input name="age" id="age" type="number" [ngModel]="age" /><br />
+
+<!-- Test condition -->
+<ng-container
+  *ngIf="personnage; then personnageOK; else personnageKO"
+></ng-container>
+
+<!-- Afficher les résultats -->
+<ng-template #personnageOK
+  ><div>
+    Hello {{ personnage?.nom }}, you are {{ personnage?.age }} years
+  </div></ng-template
+>
+<ng-template #personnageKO
+  ><div>Personne doit avoir un nom et un age</div></ng-template
+>
