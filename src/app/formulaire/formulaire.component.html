@@ -1,15 +1,33 @@
 <!-- Reactive Form -->
 <form [formGroup]="personnageForm" (ngSubmit)="creerPersonnage()">
   nom:
-  <input name="nom" id="nom" formControlName="nom" (input)="updateNom()" />
+  <input
+    placeholder="nom obligatoire"
+    name="nom"
+    id="nom"
+    formControlName="nom"
+    (input)="updateNom()"
+  />
+  <span *ngIf="nom.errors && nom.dirty"
+    >{{ nom.errors["required"] ? " nom obligatoire" : "" }}
+    {{ nom.errors["maxLength"] ? " nom trop long" : "" }}</span
+  >
+  <span *ngIf="nom.errors && nom.invalid"></span>
+
   age:
   <input
+    placeholder="age obligatoire"
     name="age"
     id="age"
     type="number"
     formControlName="age"
     (input)="updateAge()"
   />
+  <span *ngIf="age.errors && age.dirty"
+    >{{ age.errors["min"] ? " age " + age.value + " trop petit" : "" }}
+    {{ age.errors["max"] ? " age " + age.value + " trop grand" : "" }}</span
+  >
+
   <button type="submit">Créer</button>
 </form>
 <ng-container *ngIf="personnage"

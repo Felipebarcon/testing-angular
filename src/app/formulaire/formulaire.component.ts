@@ -19,8 +19,12 @@ export class FormulaireComponent implements OnInit {
   personnageForm: FormGroup;
   constructor(private builder: FormBuilder) {
     this.personnageForm = builder.group({
-      nom: new FormControl('', [Validators.required]),
-      age: new FormControl(0, [Validators.max(120)]),
+      nom: new FormControl('', [Validators.required, Validators.maxLength(10)]),
+      age: new FormControl('', [
+        Validators.required,
+        Validators.max(120),
+        Validators.min(1),
+      ]),
     });
   }
 
