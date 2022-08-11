@@ -1,0 +1,28 @@
+jour:
+<select [(ngModel)]="jour">
+  <option>Jour</option>
+  <option *ngFor="let jour of [].constructor(31); let i = index">
+    {{ i + 1 }}
+  </option>
+</select>
+
+mois:
+<select [(ngModel)]="mois">
+  <option>Mois</option>
+  <option
+    *ngFor="let mois of [].constructor(12); let i = index"
+    value="{{ i }}"
+  >
+    {{ i + 1 }}
+  </option>
+</select>
+
+année:
+<select [(ngModel)]="annee">
+  <option>Année</option>
+  <option *ngFor="let annee of [].constructor(120); let i = index">
+    {{ minimumDate + i }}
+  </option>
+</select>
+
+{{ ladate }}

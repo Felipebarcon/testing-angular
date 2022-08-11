@@ -30,7 +30,6 @@ export class PersonneComponent implements OnInit, OnChanges {
 
   public set age(value: number) {
     let input = this.input_age.nativeElement as HTMLInputElement;
-    console.log(input);
     input.setCustomValidity('');
     if (value < 0) {
       input.setCustomValidity('Age trop petit');

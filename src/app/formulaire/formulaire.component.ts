@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import Personnage from '../models/personnage';
+import { Validateurs, checkAge } from '../validators/validateurs';
 
 @Component({
   selector: 'formulaire',
@@ -19,11 +20,16 @@ export class FormulaireComponent implements OnInit {
   personnageForm: FormGroup;
   constructor(private builder: FormBuilder) {
     this.personnageForm = builder.group({
-      nom: new FormControl('', [Validators.required, Validators.maxLength(10)]),
+      nom: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(10),
+        Validateurs.checkNom(),
+      ]),
       age: new FormControl('', [
         Validators.required,
         Validators.max(120),
         Validators.min(1),
+        checkAge,
       ]),
     });
   }
@@ -49,11 +55,18 @@ export class FormulaireComponent implements OnInit {
     }
   }
 
+  changeAge(a: Date) {
+    const auj = new Date();
+    let decalage = auj.getMonth() < a.getMonth() ? 1 : 0;
+    this.age.setValue(auj.getFullYear() - a.getFullYear() - decalage);
+    this.creerPersonnage();
+  }
+
   creerPersonnage() {
     if (this.personnageForm.valid) {
       this.personnage = new Personnage(this.nom.value, this.age.value);
     } else {
-      console.log('Formulaire invalide');
+      throw 'Formulaire invalide';
     }
   }
 }

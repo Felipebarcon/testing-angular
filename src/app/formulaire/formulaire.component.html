@@ -10,9 +10,13 @@
   />
   <span *ngIf="nom.errors && nom.dirty"
     >{{ nom.errors["required"] ? " nom obligatoire" : "" }}
-    {{ nom.errors["maxLength"] ? " nom trop long" : "" }}</span
+    {{ nom.errors["maxLength"] ? " nom trop long" : "" }}
+    {{ nom.errors["keynomsInterdis"] }}</span
   >
   <span *ngIf="nom.errors && nom.invalid"></span>
+  <br />
+
+  <super-date (changeDate)="changeAge($event)"></super-date>
 
   age:
   <input
@@ -25,11 +29,14 @@
   />
   <span *ngIf="age.errors && age.dirty"
     >{{ age.errors["min"] ? " age " + age.value + " trop petit" : "" }}
-    {{ age.errors["max"] ? " age " + age.value + " trop grand" : "" }}</span
+    {{ age.errors["max"] ? " age " + age.value + " trop grand" : "" }}
+    {{ age.errors["keyagesInterdis"] }}</span
   >
 
-  <button type="submit">Créer</button>
+  <button [disabled]="personnageForm.invalid" type="submit">Créer</button>
 </form>
+
+<!-- Texte à afficher si erreur ou pas -->
 <ng-container *ngIf="personnage"
   >Hello {{ personnage.nom }}, you are {{ personnage.age }} years
   old.</ng-container
