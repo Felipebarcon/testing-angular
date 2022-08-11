@@ -1,3 +1,7 @@
 .rouge {
   color: red;
 }
+
+.ng-invalid {
+  color: red;
+}

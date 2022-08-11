@@ -5,6 +5,7 @@ import {
   OnInit,
   Output,
   SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import Personnage from '../../models/personnage';
 
@@ -14,11 +15,35 @@ import Personnage from '../../models/personnage';
   styleUrls: ['./personne.component.css'],
 })
 export class PersonneComponent implements OnInit, OnChanges {
+  @ViewChild('input_age', { static: true })
+  input_age?: any;
+
   @Input()
   nom?: string = '';
 
+  private _age?: number;
+
   @Input()
-  age?: number;
+  public get age(): number {
+    return this._age ?? 0;
+  }
+
+  public set age(value: number) {
+    let input = this.input_age.nativeElement as HTMLInputElement;
+    console.log(input);
+    input.setCustomValidity('');
+    if (value < 0) {
+      input.setCustomValidity('Age trop petit');
+    }
+    if (input.validity.valid) {
+      this._age = value;
+      if (this.personnage) {
+        this.personnage.age = value;
+      }
+    }
+  }
+
+  // validation age <= 140
 
   readonly age_minimum = 0;
 

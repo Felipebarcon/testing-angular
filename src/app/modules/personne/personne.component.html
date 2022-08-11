@@ -1,4 +1,4 @@
-eé<!-- <p *ngIf="personnage">
+<!-- <p *ngIf="personnage">
   Hello {{ personnage.nom }}, you are {{ personnage.age }} years old.
 </p>
 <p *ngIf="!personnage">Personne doit avoir un nom et un age</p> -->
@@ -19,14 +19,28 @@ nom:
   id="nom"
   (input)="change($event)"
   [ngModel]="personnage?.nom"
+  required
 />
 age:
 <input
+  #input_age
   name="age"
   id="age"
-  (input)="change($event)"
-  [ngModel]="personnage?.age"
-/><br />
+  type="number"
+  [(ngModel)]="age"
+  max="120"
+/>
+
+<!-- Age validation with rangeOverflow -->
+<span *ngIf="input_age.validity.rangeOverflow == true">
+  {{ input_age.validationMessage }}</span
+>
+
+<!-- Age validation with custom Error -->
+<span *ngIf="input_age.validity.customError">
+  {{ input_age.validationMessage }}</span
+>
+<br />
 
 signature :
 <input
@@ -34,8 +48,9 @@ signature :
   id="signature"
   (keydown)="verifSignature($event)"
   (paste)="cancel($event)"
-/><span [ngClass]="red" *ngIf="sig_msg.length > 0">{{ sig_msg }}</span
-><br />
+/>
+<span [ngClass]="red" *ngIf="sig_msg.length > 0">{{ sig_msg }}</span>
+<br />
 
 <!-- Test condition -->
 <ng-container
