@@ -3,11 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { RootComponent } from './root.component';
 import { PersonneComponent } from './modules/personne/personne.component';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormulaireComponent } from './formulaire/formulaire.component';
 
 @NgModule({
-  declarations: [RootComponent, PersonneComponent],
-  imports: [BrowserModule, FormsModule],
+  declarations: [RootComponent, PersonneComponent, FormulaireComponent],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [RootComponent],
 })

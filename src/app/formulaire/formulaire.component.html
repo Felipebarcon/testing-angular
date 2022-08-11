@@ -1,0 +1,23 @@
+<!-- Reactive Form -->
+<form [formGroup]="personnageForm" (ngSubmit)="creerPersonnage()">
+  nom:
+  <input name="nom" id="nom" formControlName="nom" (input)="updateNom()" />
+  age:
+  <input
+    name="age"
+    id="age"
+    type="number"
+    formControlName="age"
+    (input)="updateAge()"
+  />
+  <button type="submit">Créer</button>
+</form>
+<ng-container *ngIf="personnage"
+  >Hello {{ personnage.nom }}, you are {{ personnage.age }} years
+  old.</ng-container
+>
+
+<ng-container *ngIf="!personnage"
+  >Personne doit avoir un nom et un age</ng-container
+>
+<br />
