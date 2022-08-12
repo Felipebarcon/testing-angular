@@ -26,6 +26,7 @@ export class RootComponent implements OnInit {
   supprime(id: number) {
     this.peupleapi.deleteQuidam(id).subscribe((q) => {
       console.log(q, 'Supprimé');
+      window.location.reload();
     });
   }
 }
