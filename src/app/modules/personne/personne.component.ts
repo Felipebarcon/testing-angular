@@ -82,7 +82,6 @@ export class PersonneComponent implements OnInit, OnChanges {
   constructor() {}
   ngOnChanges(changes: SimpleChanges): void {
     for (const key in changes) {
-      console.log(key, '=', changes[key]);
     }
     // console.log(changes['nom']);
   }

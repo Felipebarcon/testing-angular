@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-
+import { SuperDate } from './SuperDate';
 @Component({
   selector: 'super-date',
   templateUrl: './super-date.component.html',
@@ -16,7 +16,7 @@ export class SuperDateComponent implements OnInit {
   private _annee?: number;
 
   @Output()
-  changeDate: EventEmitter<Date> = new EventEmitter<Date>();
+  changeDate: EventEmitter<SuperDate> = new EventEmitter<SuperDate>();
 
   public get jour(): number {
     return this._jour ?? 0;
@@ -42,12 +42,30 @@ export class SuperDateComponent implements OnInit {
 
   create_date() {
     if (this.isValid_date(this.annee, this.mois, this.jour)) {
-      const d = new Date(this.annee!, this.mois, this.jour);
-      this.ladate = d;
-      this.changeDate.emit(this.ladate);
+      this.ladate = new Date(this.annee!, this.mois, this.jour);
+      this.changeDate.emit({ date: this.ladate, age: this.age });
     } else {
       throw 'Erreur de date ' + `${this.annee} - ${this.mois} - ${this.jour}`;
     }
+  }
+
+  Month(num: number): string {
+    return new Date(2000, num, 1).toLocaleDateString('default', {
+      month: 'long',
+    });
+  }
+  get age(): number {
+    const auj = new Date();
+    if (this.ladate) {
+      const decalage =
+        auj.getMonth() < this.ladate.getMonth()
+          ? 1
+          : auj.getDate() < this.ladate.getDate()
+          ? 1
+          : 0;
+      return auj.getFullYear() - this.ladate.getFullYear() - decalage;
+    }
+    throw 'Date is not correct';
   }
 
   isValid_date(annee: number | undefined, mois: number, jour: number) {

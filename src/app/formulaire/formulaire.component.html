@@ -45,4 +45,9 @@
 <ng-container *ngIf="!personnage"
   >Personne doit avoir un nom et un age</ng-container
 >
+<ng-container *ngIf="personnage" [ngSwitch]="personnage.age">
+  <div *ngSwitchCase="20">Vous êtes dans un age magique</div>
+  <div *ngSwitchCase="65">Vous êtes à la retraite</div>
+  <div *ngSwitchDefault>Vous êtes en vie</div>
+</ng-container>
 <br />

@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import Personnage from '../models/personnage';
+import { SuperDate } from '../super-date/SuperDate';
 import { Validateurs, checkAge } from '../validators/validateurs';
 
 @Component({
@@ -55,11 +56,9 @@ export class FormulaireComponent implements OnInit {
     }
   }
 
-  changeAge(a: Date) {
-    const auj = new Date();
-    let decalage = auj.getMonth() < a.getMonth() ? 1 : 0;
-    this.age.setValue(auj.getFullYear() - a.getFullYear() - decalage);
-    this.creerPersonnage();
+  changeAge(sd: SuperDate) {
+    this.age.setValue(sd.age);
+    this.creerPersonnage;
   }
 
   creerPersonnage() {
