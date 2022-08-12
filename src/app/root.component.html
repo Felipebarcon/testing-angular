@@ -1,5 +1,5 @@
 <h1 main-title>{{ hello }}</h1>
-{{ today }}
+
 <itta-person nom="Felipe" [age]="38"></itta-person>
 <!-- <itta-person [nom]="'Pierre'" [age]="45"></itta-person>
 <itta-person [nom]="'Paul'" [age]="default_age"></itta-person>
@@ -12,3 +12,34 @@
 
 <div alert>Attention!</div>
 <div [alert2]="'blue'">Attention 2!</div>
+
+<!-- PIPE -->
+{{ hello | uppercase }} <br />
+<br />
+
+<!-- min int digit.min-fraction-digit - max-frac-digit -->
+{{ 3.4 | number: "1.0-0" }} <br />
+
+{{ 3.654545 | number: "1.2-4" }}<br />
+
+{{ 3800000.65432 | number: "1.2-4":"fr" }}<br />
+
+{{ today | date: "fullDate" }}<br />
+{{ today | date: "EEEE dd MMMM yyyy" }}<br />
+{{ today | date: "full":"":"fr" }}<br />
+{{ "3" | i18nSelect: { "1": "one", "2": "two", "3": "three" } }}<br />
+{{
+  today
+    | date: "dd"
+    | i18nSelect: { "11": "onze", "12": "douze", "13": "treize" }
+}}<br />
+{{ ["bac", "bed", "cerf", "chasse", "hetre"] | filtre: "^b" }}<br />
+{{ ["bac", "bed", "cerf", "chasse", "hetre"] | filtre: "^B":false }}<br />
+{{ ["bac", "bed", "cerf", "chasse", "hetre"] | filtre: "e$":false }}<br />
+
+<ul>
+  <li *ngFor="let quidam of peuple">
+    {{ quidam.id }} {{ quidam.nom }}, {{ quidam.age }} ans.
+    <button type="button" (click)="supprime(quidam.id)">X</button>
+  </li>
+</ul>

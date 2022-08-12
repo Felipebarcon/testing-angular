@@ -1,0 +1,24 @@
+{
+  "peuple": [
+    {
+      "id": 1,
+      "nom": "paul",
+      "age": "25"
+    },
+    {
+      "id": 2,
+      "nom": "felipe",
+      "age": "38"
+    },
+    {
+      "id": 3,
+      "nom": "pierre",
+      "age": "60"
+    },
+    {
+      "id": 4,
+      "nom": "andre",
+      "age": "55"
+    }
+  ]
+}

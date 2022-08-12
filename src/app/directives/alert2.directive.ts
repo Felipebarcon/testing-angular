@@ -1,5 +1,10 @@
 import { AfterViewInit, Directive, ElementRef, Input } from '@angular/core';
 
+// interface AlertParam {
+//   color: string;
+//   size: string;
+// }
+
 @Directive({
   selector: '[alert2]',
 })
