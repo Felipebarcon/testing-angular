@@ -40,6 +40,40 @@
 <ul>
   <li *ngFor="let quidam of peuple">
     {{ quidam.id }} {{ quidam.nom }}, {{ quidam.age }} ans.
-    <button type="button" (click)="supprime(quidam.id)">X</button>
+    <button *ngIf="quidam.id" type="button" (click)="supprime(quidam.id)">
+      X
+    </button>
+    <button *ngIf="quidam.id" type="button" (click)="show(quidam)">
+      Update
+    </button>
   </li>
 </ul>
+<button type="button" (click)="add()">ajoute</button>
+<form *ngIf="quidamCourant">
+  <input
+    *ngIf="quidamCourant.id"
+    name="id"
+    id="id"
+    [(ngModel)]="quidamCourant.id"
+    readonly
+  />
+  nom:
+  <input name="nom" id="nom" [(ngModel)]="quidamCourant.nom" required /> age:
+  <input
+    type="number "
+    name="age"
+    id="age"
+    [(ngModel)]="quidamCourant.age"
+    max="120"
+  />
+  <button *ngIf="quidamCourant.id" type="button" (click)="maj(quidamCourant)">
+    Update
+  </button>
+  <button
+    *ngIf="!quidamCourant.id"
+    type="button"
+    (click)="ajoute(quidamCourant)"
+  >
+    add
+  </button>
+</form>

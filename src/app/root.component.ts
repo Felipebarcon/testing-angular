@@ -25,8 +25,29 @@ export class RootComponent implements OnInit {
 
   supprime(id: number) {
     this.peupleapi.deleteQuidam(id).subscribe((q) => {
-      console.log(q, 'Supprimé');
       window.location.reload();
     });
   }
+
+  maj(quidam: Quidam) {
+    this.peupleapi.updateQuidam(quidam).subscribe((q) => {
+      window.location.reload();
+    });
+  }
+
+  ajoute(quidam: Quidam) {
+    this.peupleapi.addQuidam(quidam).subscribe((q) => {
+      window.location.reload();
+    });
+  }
+
+  quidamCourant?: Quidam;
+  show(quidam: Quidam) {
+    this.quidamCourant = { ...quidam }; // copie du quidam
+  }
+  add() {
+    this.quidamCourant = { nom: '', age: 0 };
+  }
+
+  // update peupleapi
 }

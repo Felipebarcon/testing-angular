@@ -1,5 +1,5 @@
 export default interface Quidam {
-  id: number;
+  id?: number;
   nom: string;
   age: number;
 }
